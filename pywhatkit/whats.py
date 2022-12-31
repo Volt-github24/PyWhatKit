@@ -19,7 +19,7 @@ core.check_connection()
 def sendwhatmsg_instantly(
         phone_no: str,
         message: str,
-        wait_time: int = 15,
+        wait_time: int = 35,
         tab_close: bool = False,
         close_time: int = 3,
 ) -> None:
@@ -33,10 +33,10 @@ def sendwhatmsg_instantly(
         raise exceptions.InvalidPhoneNumber("Invalid Phone Number.")
 
     web.open(f"https://web.whatsapp.com/send?phone={phone_no}&text={quote(message)}")
-    time.sleep(4)
-    pg.click(core.WIDTH / 2, core.HEIGHT / 2 + 15)
-    time.sleep(wait_time - 4)
-    core.findtextbox()
+    time.sleep(wait_time)
+    #pg.click(core.WIDTH / 2, core.HEIGHT / 2 + 15)
+    #time.sleep(wait_time - 4)
+    #core.findtextbox()
     pg.press("enter")
     log.log_message(_time=time.localtime(), receiver=phone_no, message=message)
     if tab_close:
@@ -61,11 +61,11 @@ def sendimg_or_video_immediately(
 
     web.open(f"https://web.whatsapp.com/send?phone={phone_no}")
     time.sleep(wait_time)
-    core.find_link()
-    time.sleep(1)
-    core.find_photo_or_video()
+    #core.find_link()
+    #time.sleep(1)
+    #core.find_photo_or_video()
 
-    pyperclip.copy(os.path.abspath(path))
+    pyperclip.copy("/home/voltaire/Desktop/gogol.jpg")
     print("Copied")
     time.sleep(1)
     keyboard.press("ctrl")
